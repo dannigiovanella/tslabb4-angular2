@@ -25,8 +25,8 @@ export class CourseListComponent {
 
 
 
-
- // Filtering av kurser vid sökning via inputfält
+  //Filtrering
+  // Filtering av kurser vid sökning via inputfält
 
   //Signal för filtererade kurser
   searchTerm = signal("");
@@ -37,15 +37,36 @@ export class CourseListComponent {
     //Variabel för att lagra värdet av sökterm
     const filter = this.searchTerm().trim().toLowerCase();
 
-    //Om inget skrivits in resturneras bara kurslistan som den är
-    if (!filter) return this.courses();
+    //Varibel för filtrerade och sorterade kurser
+    let processedCourses = this.courses();
 
-    //Returnrar svar på antingen kurskod eller kursnamn
-    return this.courses().filter(course =>
-      course.code.toLowerCase().includes(filter) ||
-      course.coursename.toLowerCase().includes(filter)
+    //Filterar kurser om sökfras finns
+    if (filter) {
+
+      //Filterar kurser
+      processedCourses = processedCourses.filter(course =>
+
+        // Söker kurs med kurskod eller kursnamn
+        course.code.toLowerCase().includes(filter) ||
+        course.coursename.toLowerCase().includes(filter)
+      );
+    }
+
+
+    //Sortering
+    // Hämtar valt select-värde från signalen
+    const sortValue = this.sortCourses();
+
+    // Sorterar och returnerar kurser i alfabetisk ordning
+    return processedCourses.slice().sort((a, b) =>
+
+      //localcomapre jämför textsträngar och sorterar dom i alfabetisk ordning
+      a[sortValue].localeCompare(b[sortValue])
+
     );
   });
+
+
 
 
   // Sortering på Kurskod, Kursnamn och Progression
@@ -63,10 +84,5 @@ export class CourseListComponent {
       this.courses.set(data);
     });
   }
-
-
-  // Filtering av kurser vid sökning via inputfält
-
-
 
 }
