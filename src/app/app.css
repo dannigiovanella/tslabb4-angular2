@@ -2,7 +2,7 @@ main {
     width: 100%;
     min-height: 100vh;
     background-color: rgb(221, 235, 247);
-    padding: 1rem;
+    padding: 3rem;
     border-radius: 10px;
 }
 
@@ -26,4 +26,11 @@ footer {
     padding-left: 1rem;
     padding-bottom: 2rem;
     margin-top: 1rem;
+}
+
+/*Anpassning för mindre skärm*/
+@media (max-width: 700px) {
+    main{
+        padding: 1rem;
+    }
 }

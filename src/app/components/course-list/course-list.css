@@ -1,7 +1,38 @@
-
-
 /*Styling och layout för sökning/sortering och för tabellen*/
 
+/*SÖKNING/FILTER*/
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+input {
+    width: 50%;
+    padding: 0.5rem;
+    border: 1px solid #acacac;
+    border-radius: 5px;
+    outline: none;
+}
+
+/*SORTERING*/
+.sort {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+select {
+    width: 50%;
+    padding: 0.5rem;
+    border: 1px solid #acacac;
+    border-radius: 5px;
+    outline: none;
+}
+
+/*TABELL*/
 .table {
     width: 100%;
     background-color: rgb(255, 255, 255);
@@ -32,6 +63,27 @@ td {
 /*Anpassad tabell för mobile*/
 @media (max-width: 600px) {
 
+    /*Sökning/filtrering*/
+    .filter {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    select{
+        width: 100%;
+    }
+
+    /*Sortering*/
+    .sort {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
     /*Gör om tabell till kortlayout*/
 
@@ -63,10 +115,10 @@ td {
     }
 
 
-/*Ersätter tabellrubrikerna*/
+    /*Ersätter tabellrubrikerna*/
 
-/* Första kolumnen: kurskod */
-/*Whitespace förhindrar att ord bryter. Word-break bryter längre ord*/
+    /* Första kolumnen: kurskod */
+    /*Whitespace förhindrar att ord bryter. Word-break bryter längre ord*/
     td:nth-child(1)::before {
         content: "Kurskod:";
         font-weight: bold;
