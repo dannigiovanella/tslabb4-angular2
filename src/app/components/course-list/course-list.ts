@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
-import { CourseService } from '../../services/course';
+import { Component, computed, inject, signal } from '@angular/core';
+import { CourseService } from '../../services/course-service';
 //Importerar interface för kursdata
 import { CourseInterface } from '../../models/course-interface';
-import { CommonModule } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-course-list',
@@ -22,6 +22,33 @@ export class CourseListComponent {
   //Signal för kurslistan. Lagrar datan i array
   courses = signal<CourseInterface[]>([]);
 
+
+
+  
+
+ // Filtering av kurser vid sökning via inputfält
+
+  //Signal för filtererade kurser
+  searchTerm = signal("");
+
+  //Computed - Beräknar värdet av signal för filterade kurser. Uppdateras vid sökning eller änding av kursinfo
+  filteredCourses = computed(() => {
+
+    //Variabel för att lagra värdet av sökterm
+    const filter = this.searchTerm().trim().toLowerCase();
+
+    //Om inget skrivits in resturneras bara kurslistan som den är
+    if (!filter) return this.courses();
+
+    //Returnrar svar på antingen kurskod eller kursnamn
+    return this.courses().filter(course =>
+      course.code.toLowerCase().includes(filter) ||
+      course.coursename.toLowerCase().includes(filter)
+    );
+  });
+
+
+
   //Körs när komponent laddas
   ngOnInit() {
     // subscribe startar observable och kör koden när datan kommer (RxJS docs)
@@ -30,5 +57,10 @@ export class CourseListComponent {
       this.courses.set(data);
     });
   }
+
+
+  // Filtering av kurser vid sökning via inputfält
+
+
 
 }

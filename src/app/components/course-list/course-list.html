@@ -4,6 +4,15 @@
 
     <h2>Kurslista</h2>
 
+    <!--Sökfält att kunna söka efter kurser-->
+    <!--(input) Lyssanr på tangenttrycke. Hämtar värdet från input. Uppdaterar searchTerm-signal med nytt väde-->
+  <label for="filter">Sök på kurs</label>
+
+  <input type="text" id="filter" [value]="searchTerm()"
+
+    (input)="searchTerm.set($any($event.target).value)"/>
+
+
     <table>
         <thead>
 
@@ -17,7 +26,7 @@
         <tbody>
             <!--Loopar igenom varje kurs.
     course.code fungerar som unikt ID där track använda för att återanvända dessa element  -->
-            @for(course of courses(); track course.code) {
+            @for(course of filteredCourses(); track course.code) {
             <tr>
                 <!--Hämtar vädrden från API-->
                 <td>{{ course.code }}</td>
