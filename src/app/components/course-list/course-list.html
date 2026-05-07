@@ -1,2 +1,31 @@
 <!--Tabell för att visa kuresr i en tabell-->
 
+<section>
+
+    <h2>Kurslista</h2>
+
+    <table>
+        <thead>
+
+            <tr>
+                <th>Kurskod</th>
+                <th>Kursnamn</th>
+                <th>Progression</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!--Loopar igenom varje kurs.
+    course.code fungerar som unikt ID där track använda för att återanvända dessa element  -->
+            @for(course of courses(); track course.code) {
+            <tr>
+                <!--Hämtar vädrden från API-->
+                <td>{{ course.code }}</td>
+                <td>{{ course.coursename }}</td>
+                <td>{{ course.progression }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</section>

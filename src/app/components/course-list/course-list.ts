@@ -2,10 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { CourseService } from '../../services/course';
 //Importerar interface för kursdata
 import { CourseInterface } from '../../models/course-interface';
+import { CommonModule } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 
 @Component({
   selector: 'app-course-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css',
 })
