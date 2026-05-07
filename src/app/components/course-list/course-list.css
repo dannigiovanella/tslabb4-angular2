@@ -58,6 +58,11 @@ td {
     word-break: break-word;
 }
 
+/*Felmeddelande*/
+.error {
+  color: #d6072d;
+  padding: 1rem;
+}
 
 
 /*Anpassad tabell för mobile*/

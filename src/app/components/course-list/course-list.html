@@ -4,6 +4,13 @@
 
     <h2>Kurslista</h2>
 
+<!--Felhantering vid fel av hämting av API-->
+    @if(error()) {
+  <div class="error">
+    {{ error() }}
+  </div>
+}
+
     <!--Sökfält att kunna söka efter kurser-->
     <!--(input) Lyssanr på tangenttrycke. Hämtar värdet från input. Uppdaterar searchTerm-signal med nytt väde-->
     <div class="filter">

@@ -22,7 +22,8 @@ export class CourseListComponent {
   //Signal för kurslistan. Lagrar datan i array
   courses = signal<CourseInterface[]>([]);
 
-
+  //Signal för felhantering
+  error = signal<string | null>(null);
 
 
   //Filtrering
@@ -74,15 +75,25 @@ export class CourseListComponent {
   //Signal för vilka fält os kurser sorteras i, med startvärde code
   sortCourses = signal<'code' | 'coursename' | 'progression'>('code');
 
-
-
   //Körs när komponent laddas
   ngOnInit() {
     // subscribe startar observable och kör koden när datan kommer (RxJS docs)
-    this.courseService.getCourses().subscribe(data => {
-      //Uppdaterar signalen med kursdata
-      this.courses.set(data);
+    this.courseService.getCourses().subscribe({
+
+      // Om anropet lyckas
+      next: (data) => {
+
+        // Sparar datan i signalen
+        // Detta uppdaterar UI automatiskt
+        this.courses.set(data);
+      },
+
+      // Om nåt går fel vid API anrop
+      error: () => {
+
+        // Visar felmeddelande
+        this.error.set("Nåt gick fel vid hämtning av kurser");
+      }
     });
   }
-
 }
