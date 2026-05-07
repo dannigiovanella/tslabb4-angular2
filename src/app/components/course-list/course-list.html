@@ -6,35 +6,52 @@
 
     <!--Sökfält att kunna söka efter kurser-->
     <!--(input) Lyssanr på tangenttrycke. Hämtar värdet från input. Uppdaterar searchTerm-signal med nytt väde-->
-  <label for="filter">Sök på kurs</label>
+    <div class="filter">
+        <label for="filter">Sök på kurs</label>
 
-  <input type="text" id="filter" [value]="searchTerm()"
+        <input type="text" id="filter" [value]="searchTerm()" (input)="searchTerm.set($any($event.target).value)" />
+    </div>
 
-    (input)="searchTerm.set($any($event.target).value)"/>
 
+    <!--Selectmeny för sortering av Kurskod, Kursnamn och Progression-->
+    <div class="sort">
+        <p>Sortera efter:</p>
+        <!--Value binder värde i dropdown till signal-->
+        <!--Change körs när användare väljer. Hämtar valt värde. Uppdaterar signalen-->
+        <select id="sort" [value]="sortCourses()" (change)="sortCourses.set($any($event.target).value)">
 
-    <table>
-        <thead>
+            <option value="code">Kurskod</option>
+            <option value="coursename">Kursnamn</option>
+            <option value="progression">Progression</option>
 
-            <tr>
-                <th>Kurskod</th>
-                <th>Kursnamn</th>
-                <th>Progression</th>
-            </tr>
-        </thead>
+        </select>
+    </div>
 
-        <tbody>
-            <!--Loopar igenom varje kurs.
+    <!--Tabell som visar information om kurser-->
+    <div class="table">
+        <table>
+            <thead>
+
+                <tr>
+                    <th>Kurskod</th>
+                    <th>Kursnamn</th>
+                    <th>Progression</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!--Loopar igenom varje kurs.
     course.code fungerar som unikt ID där track använda för att återanvända dessa element  -->
-            @for(course of filteredCourses(); track course.code) {
-            <tr>
-                <!--Hämtar vädrden från API-->
-                <td>{{ course.code }}</td>
-                <td>{{ course.coursename }}</td>
-                <td>{{ course.progression }}</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+                @for(course of filteredCourses(); track course.code) {
+                <tr>
+                    <!--Hämtar vädrden från API-->
+                    <td>{{ course.code }}</td>
+                    <td>{{ course.coursename }}</td>
+                    <td>{{ course.progression }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 </section>

@@ -24,7 +24,7 @@ export class CourseListComponent {
 
 
 
-  
+
 
  // Filtering av kurser vid sökning via inputfält
 
@@ -46,6 +46,12 @@ export class CourseListComponent {
       course.coursename.toLowerCase().includes(filter)
     );
   });
+
+
+  // Sortering på Kurskod, Kursnamn och Progression
+
+  //Signal för vilka fält os kurser sorteras i, med startvärde code
+  sortCourses = signal<'code' | 'coursename' | 'progression'>('code');
 
 
 
