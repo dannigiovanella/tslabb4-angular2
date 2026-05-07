@@ -1,0 +1,91 @@
+
+
+/*Styling och layout för sökning/sortering och för tabellen*/
+
+.table {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #c4c0c0;
+    word-break: break-word;
+}
+
+
+
+/*Anpassad tabell för mobile*/
+@media (max-width: 600px) {
+
+
+    /*Gör om tabell till kortlayout*/
+
+    table,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    /*Döljer rubriker för tabell*/
+    thead {
+        display: none;
+    }
+
+
+    tr {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #c4c0c0;
+    }
+
+    td {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 0.5rem 0;
+        border: none;
+    }
+
+
+/*Ersätter tabellrubrikerna*/
+
+/* Första kolumnen: kurskod */
+/*Whitespace förhindrar att ord bryter. Word-break bryter längre ord*/
+    td:nth-child(1)::before {
+        content: "Kurskod:";
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    /* Andra kolumnen: kursnamn */
+    td:nth-child(2)::before {
+        content: "Kursnamn:";
+        font-weight: bold;
+        word-break: break-word;
+        white-space: nowrap;
+    }
+
+    /* Tredje kolumnen: progression */
+    td:nth-child(3)::before {
+        content: "Progression:";
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+}
