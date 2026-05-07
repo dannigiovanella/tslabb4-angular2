@@ -12,7 +12,7 @@ import { CourseInterface } from '../../models/course-interface';
 
 
 //Klass för kurslista
-export class CourseListComponenet {
+export class CourseListComponent {
 
   //Hämtar service med inject
   courseService = inject(CourseService);
