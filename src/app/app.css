@@ -1,0 +1,21 @@
+main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(221, 235, 247);
+    padding: 1rem;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: rgb(222, 235, 247);
+}
+
+footer {
+    color: rgb(222, 235, 247);
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+    margin-top: 1rem;
+}
