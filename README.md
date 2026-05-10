@@ -4,6 +4,7 @@
 Detta projekt är en webbapplikation utvecklad med Angular. Syftet med applikationen är att visa på förståelse för HTTP-anrop, services, Angular Signals samt dynamisk filtrering och sortering av data.
 
 ## Länk till webbplats:
+https://labb4-angular-daniela.netlify.app/
 
 
 ## Funktioner:
